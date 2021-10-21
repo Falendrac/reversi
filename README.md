@@ -16,7 +16,7 @@ Using Ubuntu 20.04.
 
 Currently is the first "jet" of my algorithm for the reversi.
 
-1. Create an bi-dimenssionnal array of character.
+1. Create an bi-dimenssionnal array of characters.
 
 2. Initializing the array for : The first line have 'A' to 'H' characters ; The first column have "1" to "8" characters ; 
 The rest of the array have space character, except D-4, D-5, E-4 and E-5 positions where we have the firsts pieces of the game.
@@ -61,3 +61,17 @@ The rest of the array have space character, except D-4, D-5, E-4 and E-5 positio
     * End If
 
     * Call a function that validate if a piece can be convert in Black or White
+
+        * Browse in diagonal, line and column an other piece
+            
+            * If this is not have a valide piece around the position
+                * Print: "This position don't have a possibilities to take an ennemy piece. Please, put another position."
+                * recall te function to demand a new position
+            * End If
+
+            * If the position have a valide piece around the position
+                * Put the piece in the array
+                * Convert all the concern pieces
+            * End If
+        
+        * End Browse
