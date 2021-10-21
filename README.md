@@ -1,8 +1,8 @@
-# Reversi in C
+# Reversi
 
 ## General
 
-Here, you can find my personnal project to develop the reversi game with the C language. Later, i go make other reversi but with differents languages.
+Here, you can find my personnal project to develop the reversi game with the most languages. In first, i develop the reversi with the C language and later i go make other reversi but with differents languages.
 Description of Reversi comming later.
 
 ## Requirements
