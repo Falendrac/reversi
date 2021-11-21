@@ -14,5 +14,13 @@ char ask_color(void);
 void test_position(char **reversi, int line, int column, char color);
 
 int diag_high_left(char **reversi, int line, int column, char color);
+int hor_high(char **reversi, int line, int column, char color);
+int ver_left(char **reversi, int line, int column, char color);
+int diag_down_left(char **reversi, int line, int column, char color);
+
+int diag_high_right(char **reversi, int line, int column, char color);
+int ver_right(char **reversi, int line, int column, char color);
+int hor_down(char **reversi, int line, int column, char color);
+int diag_down_right(char **reversi, int line, int column, char color);
 
 #endif

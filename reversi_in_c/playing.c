@@ -81,20 +81,21 @@ void test_position(char **reversi, int line, int column, char color)
 
 	if (reversi[line - 1][column - 1] == color_ia)
 		i += diag_high_left(reversi, line, column, color);
-	/*else if (reversi[line - 1][column] == color_ia)
-		hor_high;
-	else if (reversi[line - 1][column + 1] == color_ia)
-		diag_high_right;
-	else if (reversi[line][column - 1] == color_ia)
-		ver_left;
-	else if (reversi[line][column + 1] == color_ia)
-		ver_right;
-	else if (reversi[line + 1][column - 1] == color_ia)
-		diag_down_left;
-	else if (reversi[line + 1][column] == color_ia)
-		hor_down;
-	else if (reversi[line + 1][column + 1] == color_ia)
-		diag_down_right;*/
+
+	if (reversi[line - 1][column] == color_ia)
+		i += hor_high(reversi, line, column, color);
+	if (reversi[line - 1][column + 1] == color_ia)
+		i += diag_high_right(reversi, line, column, color);
+	if (reversi[line][column - 1] == color_ia)
+		i += ver_left(reversi, line, column, color);
+	if (reversi[line][column + 1] == color_ia)
+		i += ver_right(reversi, line, column, color);
+	if (reversi[line + 1][column - 1] == color_ia)
+		i += diag_down_left(reversi, line, column, color);
+	if (reversi[line + 1][column] == color_ia)
+		i += hor_down(reversi, line, column, color);
+	if (reversi[line + 1][column + 1] == color_ia)
+		i += diag_down_right(reversi, line, column, color);
 
 	if (i == 0)
 	{
