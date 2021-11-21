@@ -8,10 +8,15 @@
  */
 int main(void)
 {
-	char **reversi;
+	char **reversi, color;
+	/*int played = 1;*/
 
 	reversi = reversi_init();
 
+	print_table_reversi(reversi);
+
+	color = ask_color();
+	ask_to_player(reversi, color);
 	print_table_reversi(reversi);
 
 	reversi_free(reversi);
