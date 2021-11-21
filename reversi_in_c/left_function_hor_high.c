@@ -16,7 +16,7 @@ int diag_high_left(char **reversi, int line, int column, char color)
 {
 	int line_search = line, column_search = column;
 
-	while (line > 0 && column > 0 && reversi[line][column] != color)
+	while (line > 1 && column > 1 && reversi[line][column] != color)
 	{
 		line--;
 		column--;
@@ -51,7 +51,7 @@ int hor_high(char **reversi, int line, int column, char color)
 {
 	int line_search = line;
 
-	while (line > 0 && reversi[line][column] != color)
+	while (line > 1 && reversi[line][column] != color)
 	{
 		line--;
 	}
@@ -84,7 +84,7 @@ int ver_left(char **reversi, int line, int column, char color)
 {
 	int column_search = column;
 
-	while (column > 0 && reversi[line][column] != color)
+	while (column > 1 && reversi[line][column] != color)
 	{
 		column--;
 	}
@@ -117,7 +117,7 @@ int diag_down_left(char **reversi, int line, int column, char color)
 {
 	int line_search = line, column_search = column;
 
-	while (line < 8 && column > 0 && reversi[line][column] != color)
+	while (line < 8 && column > 1 && reversi[line][column] != color)
 	{
 		line++;
 		column--;

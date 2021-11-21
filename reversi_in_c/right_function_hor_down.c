@@ -16,7 +16,7 @@ int diag_high_right(char **reversi, int line, int column, char color)
 {
 	int line_search = line, column_search = column;
 
-	while (line > 0 && column < 8 && reversi[line][column] != color)
+	while (line > 1 && column < 8 && reversi[line][column] != color)
 	{
 		line--;
 		column++;
