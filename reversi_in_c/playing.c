@@ -35,7 +35,7 @@ void ask_to_player(char **reversi, char color)
 		return;
 	}
 
-	test_position(reversi, line, column, color);
+	convert_position(reversi, line, column, color);
 }
 
 /**
@@ -60,7 +60,7 @@ char ask_color(void)
 }
 
 /**
- * test_position - Test if the position asking by the player is avaible
+ * convert_position - Test if the position asking by the player is avaible
  * If it avaible, call another functions to place the piece and convert
  * all pieces
  *
@@ -69,7 +69,7 @@ char ask_color(void)
  * @column: The index of the column asking by the player
  * @color: The color of the player
  */
-void test_position(char **reversi, int line, int column, char color)
+void convert_position(char **reversi, int line, int column, char color)
 {
 	char color_ia;
 	int i = 0;
@@ -102,4 +102,74 @@ void test_position(char **reversi, int line, int column, char color)
 		printf("The position is not valid, no piece around\n");
 		ask_to_player(reversi, color);
 	}
+}
+
+/**
+ * test_position - Test if the position asking by the player is avaible
+ *
+ * @reversi: The reversi table
+ * @line: The index of the line asking by the player
+ * @column: The index of the column asking by the player
+ * @color: The color of the player
+ *
+ * Return: i, i is equal of 0 if we don't have valid positions
+ */
+int test_position(char **reversi, int line, int column, char color)
+{
+	char color_ia;
+	int i = 0;
+
+	if (reversi[line][column] != ' ')
+		return (0);
+
+	if (color == 'W')
+		color_ia = 'B';
+	else
+		color_ia = 'W';
+
+	if (reversi[line - 1][column - 1] == color_ia)
+		i += test_diag_high_left(reversi, line, column, color);
+	if (reversi[line - 1][column] == color_ia)
+		i += test_hor_high(reversi, line, column, color);
+	if (reversi[line - 1][column + 1] == color_ia)
+		i += test_diag_high_right(reversi, line, column, color);
+	if (reversi[line][column - 1] == color_ia)
+		i += test_ver_left(reversi, line, column, color);
+	if (reversi[line][column + 1] == color_ia)
+		i += test_ver_right(reversi, line, column, color);
+	if (reversi[line + 1][column - 1] == color_ia)
+		i += test_diag_down_left(reversi, line, column, color);
+	if (reversi[line + 1][column] == color_ia)
+		i += test_hor_down(reversi, line, column, color);
+	if (reversi[line + 1][column + 1] == color_ia)
+		i += test_diag_down_right(reversi, line, column, color);
+
+	if (i != 0)
+		printf("%d%c\n", line, column + 'A' - 1);
+
+	return (i);
+}
+
+/**
+ * valid_position - Test if the position asking by the player is avaible
+ *
+ * @reversi: The reversi table
+ * @color: The color of the player
+ *
+ * Return: i, i is equal of 0 if we don't have valid positions
+ */
+int valid_position(char **reversi, char color)
+{
+	int loopX, loopY, i = 0;
+
+	printf("Valid position for a %c piece:\n", color);
+
+	for (loopX = 1; loopX < 8; loopX++)
+		for (loopY = 1; loopY < 8; loopY++)
+			i += test_position(reversi, loopX, loopY, color);
+
+	if (i == 0)
+		printf("No position for %c piece\n", color);
+
+	return (i);
 }

@@ -8,18 +8,35 @@
  */
 int main(void)
 {
-	char **reversi, color;
-	/*int played = 1;*/
+	char **reversi;
 
 	reversi = reversi_init();
 
 	print_table_reversi(reversi);
 
-	color = ask_color();
-	ask_to_player(reversi, color);
-	print_table_reversi(reversi);
+	two_players(reversi);
 
 	reversi_free(reversi);
 
 	return (0);
+}
+
+void two_players(char **reversi)
+{
+	char color;
+	int i = 1;
+
+	color = ask_color();
+
+	while (i != 0)
+	{
+		i = valid_position(reversi, color);
+		ask_to_player(reversi, color);
+		print_table_reversi(reversi);
+
+		if (color == 'W')
+			color = 'B';
+		else
+			color = 'W';
+	}
 }
