@@ -1,5 +1,11 @@
 #include "reversi.h"
 
+/**
+ * ask_to_player - Ask to player what position he want to place a piece
+ *
+ * @reversi: The reversi table
+ * @color: Color of the player
+ */
 void ask_to_player(char **reversi, char color)
 {
 	char *str;
@@ -32,6 +38,11 @@ void ask_to_player(char **reversi, char color)
 	test_position(reversi, line, column, color);
 }
 
+/**
+ * ask_color - Ask to the player what color he want
+ *
+ * Return: The color of the player
+ */
 char ask_color(void)
 {
 	char color;
@@ -48,6 +59,16 @@ char ask_color(void)
 	return (color);
 }
 
+/**
+ * test_position - Test if the position asking by the player is avaible
+ * If it avaible, call another functions to place the piece and convert
+ * all pieces
+ *
+ * @reversi: The reversi table
+ * @line: The index of the line asking by the player
+ * @column: The index of the column asking by the player
+ * @color: The color of the player
+ */
 void test_position(char **reversi, int line, int column, char color)
 {
 	char color_ia;
