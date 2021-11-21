@@ -6,7 +6,7 @@
  *
  * @reversi: The reversi table
  * @line: The index of line asking by the player
- * @color: The index of column asking by the player
+ * @column: The index of column asking by the player
  * @color: Color of the player
  *
  * Return: 0 if the diag have not the same color in the last test
@@ -41,7 +41,7 @@ int diag_high_left(char **reversi, int line, int column, char color)
  *
  * @reversi: The reversi table
  * @line: The index of line asking by the player
- * @color: The index of column asking by the player
+ * @column: The index of column asking by the player
  * @color: Color of the player
  *
  * Return: 0 if the hor have not the same color in the last test
@@ -74,7 +74,7 @@ int hor_high(char **reversi, int line, int column, char color)
  *
  * @reversi: The reversi table
  * @line: The index of line asking by the player
- * @color: The index of column asking by the player
+ * @column: The index of column asking by the player
  * @color: Color of the player
  *
  * Return: 0 if the ver have not the same color in the last test
@@ -107,7 +107,7 @@ int ver_left(char **reversi, int line, int column, char color)
  *
  * @reversi: The reversi table
  * @line: The index of line asking by the player
- * @color: The index of column asking by the player
+ * @column: The index of column asking by the player
  * @color: Color of the player
  *
  * Return: 0 if the diag have not the same color in the last test
