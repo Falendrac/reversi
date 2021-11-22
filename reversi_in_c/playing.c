@@ -79,27 +79,29 @@ void convert_position(char **reversi, int line, int column, char color)
 	else
 		color_ia = 'W';
 
-	if (reversi[line - 1][column - 1] == color_ia)
-		i += diag_high_left(reversi, line, column, color);
+	reversi[line][column] = color;
 
+	if (reversi[line - 1][column - 1] == color_ia)
+		i += conver_dir(reversi, line - 1, column - 1, -1, -1, color);
 	if (reversi[line - 1][column] == color_ia)
-		i += hor_high(reversi, line, column, color);
-	if (reversi[line - 1][column + 1] == color_ia)
-		i += diag_high_right(reversi, line, column, color);
+		i += conver_dir(reversi, line - 1, column, -1, 0, color);
+	if (column < 8 && reversi[line - 1][column + 1] == color_ia)
+		i += conver_dir(reversi, line - 1, column + 1, -1, 1, color);
 	if (reversi[line][column - 1] == color_ia)
-		i += ver_left(reversi, line, column, color);
-	if (reversi[line][column + 1] == color_ia)
-		i += ver_right(reversi, line, column, color);
-	if (reversi[line + 1][column - 1] == color_ia)
-		i += diag_down_left(reversi, line, column, color);
-	if (reversi[line + 1][column] == color_ia)
-		i += hor_down(reversi, line, column, color);
-	if (reversi[line + 1][column + 1] == color_ia)
-		i += diag_down_right(reversi, line, column, color);
+		i += conver_dir(reversi, line, column - 1, 0, -1, color);
+	if (column < 8 && reversi[line][column + 1] == color_ia)
+		i += conver_dir(reversi, line, column + 1, 0, 1, color);
+	if (line < 8 && reversi[line + 1][column - 1] == color_ia)
+		i += conver_dir(reversi, line + 1, column - 1, 1, -1, color);
+	if (line < 8 && reversi[line + 1][column] == color_ia)
+		i += conver_dir(reversi, line + 1, column, 1, 0, color);
+	if (line < 8 && column < 8 && reversi[line + 1][column + 1] == color_ia)
+		i += conver_dir(reversi, line + 1, column + 1, 1, 1, color);
 
 	if (i == 0)
 	{
 		printf("The position is not valid, no piece around\n");
+		reversi[line][column] = ' ';
 		ask_to_player(reversi, color);
 	}
 }
@@ -128,21 +130,21 @@ int test_position(char **reversi, int line, int column, char color)
 		color_ia = 'W';
 
 	if (reversi[line - 1][column - 1] == color_ia)
-		i += test_diag_high_left(reversi, line, column, color);
+		i += test_dir(reversi, line - 1, column - 1, -1, -1, color);
 	if (reversi[line - 1][column] == color_ia)
-		i += test_hor_high(reversi, line, column, color);
-	if (reversi[line - 1][column + 1] == color_ia)
-		i += test_diag_high_right(reversi, line, column, color);
+		i += test_dir(reversi, line - 1, column, -1, 0, color);
+	if (column < 8 && reversi[line - 1][column + 1] == color_ia)
+		i += test_dir(reversi, line - 1, column + 1, -1, 1, color);
 	if (reversi[line][column - 1] == color_ia)
-		i += test_ver_left(reversi, line, column, color);
-	if (reversi[line][column + 1] == color_ia)
-		i += test_ver_right(reversi, line, column, color);
-	if (reversi[line + 1][column - 1] == color_ia)
-		i += test_diag_down_left(reversi, line, column, color);
-	if (reversi[line + 1][column] == color_ia)
-		i += test_hor_down(reversi, line, column, color);
-	if (reversi[line + 1][column + 1] == color_ia)
-		i += test_diag_down_right(reversi, line, column, color);
+		i += test_dir(reversi, line, column - 1, 0, -1, color);
+	if (column < 8 && reversi[line][column + 1] == color_ia)
+		i += test_dir(reversi, line, column + 1, 0, 1, color);
+	if (line < 8 && reversi[line + 1][column - 1] == color_ia)
+		i += test_dir(reversi, line + 1, column - 1, 1, -1, color);
+	if (line < 8 && reversi[line + 1][column] == color_ia)
+		i += test_dir(reversi, line + 1, column, 1, 0, color);
+	if (line < 8 && column < 8 && reversi[line + 1][column + 1] == color_ia)
+		i += test_dir(reversi, line + 1, column + 1, 1, 1, color);
 
 	if (i != 0)
 		printf("%d%c\n", line, column + 'A' - 1);
@@ -164,8 +166,8 @@ int valid_position(char **reversi, char color)
 
 	printf("Valid position for a %c piece:\n", color);
 
-	for (loopX = 1; loopX < 8; loopX++)
-		for (loopY = 1; loopY < 8; loopY++)
+	for (loopX = 1; loopX < 9; loopX++)
+		for (loopY = 1; loopY < 9; loopY++)
 			i += test_position(reversi, loopX, loopY, color);
 
 	if (i == 0)

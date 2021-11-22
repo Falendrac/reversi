@@ -21,6 +21,11 @@ int main(void)
 	return (0);
 }
 
+/**
+ * two_players - Loop for 2 players
+ *
+ * @reversi: The reversi table
+ */
 void two_players(char **reversi)
 {
 	char color;
