@@ -5,13 +5,6 @@
 Here, you can find my personnal project to develop the reversi game with the most languages. In first, i develop the reversi with the C language and later i go make other reversi but with differents languages.
 Description of Reversi comming later.
 
-## Requirements
-
-For compiling:
-> gcc -Wall -pedantic -Werror -Wextra -std=gnu89 [NAMEOFFILE.c] -o [NEWFILE]
-
-Using Ubuntu 20.04.
-
 ## Algorithm
 
 Currently is the first "jet" of my algorithm for the reversi.
